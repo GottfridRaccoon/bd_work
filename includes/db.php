@@ -10,7 +10,36 @@
                 exit();
 
             }
-               
+           
+           
+           
+if (isset($_POST['send'])){
+                 $name = $_POST['nam']; $fname = $_POST['fname']; $oname = $_POST['oname']; 
+                  $sql = mysqli_query($connect_db, "INSERT INTO `user` (`name`, `fname`,`oname`) VALUES ('{$name}', '{$fname}','{$oname}')");
+    
+    
+                if ((""==trim($name)) || (""==trim($fname)) ||("" ==trim($oname)))
+                            {
+                                echo "Вы ввели не все данные";
+                    
+                                die ();
+                                }
+    
+                            if ($sql) 
+                            {
+                            echo '<p>Данные успешно добавлены в таблицу.</p>';
+                            header("Location: ".$_SERVER['REQUEST_URI']);
+                            }
+                        else 
+                        {
+                        echo '<p>Произошла ошибка: ' . mysqli_error($connect_db) . '</p>';
+                        }
+    }
+
+    // Я ПЫТАЛСЯ СДЕЛАТЬ ХОРОШО, НО ЭТО ПХП
+
+
+
   //  $select_user = mysqli_query( $connect_db,"SELECT *FROM $table_user ");
 
                 function showTable($connect, $use_table){
